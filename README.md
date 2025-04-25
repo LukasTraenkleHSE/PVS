@@ -1,6 +1,7 @@
 # PVS
 Parallele und Verteilte Systeme Lab
 
+
 Instructions for Installation:
 1. Clone this repository via CMD with
 git clone https://github.com/LukasTraenkleHSE/PVS.git
@@ -14,9 +15,19 @@ or inside VS Code via the terminal.
 docker compose up.
 
 5. After the build is done, open your favorite browser and visit
-localhost:4173.
+localhost:3000.
 
 6. The installation is finished, and you can now test the app.
+
+OR
+
+Include our frontend image ghcr.io/lukastraenklehse/pvs:main in a docker compose yaml with a fitting backend.
+
+OR 
+
+Testable and currently deployed under
+https://uni2.mowan.org
+
 
 
 Twelve-Factor App Principles
@@ -31,24 +42,25 @@ We use a package.json where all dependencies are listed.
 3. Config
 Configurations of an app need to be stored independently as environment variables.
 This is not yet the case, but with an .env file all sensitive data will be hidden.
+Some Environment Variables are given in the docker-compose.yml.
 
-4. Backing Services
+5. Backing Services
 Services like databases, messaging systems, SMTP services, etc. should be architected as external resources.
-We don't use any database right now, but it can be done via a database set up in the .env file.
+We don't use any external database right now, but it can be done via a database set up in the .env file.
 
-5. Build, Release, Run
+6. Build, Release, Run
 There should be three independent steps of a deployment process.
 Not given right now in single steps, but this will be implemented when Kubernetes is involved.
 
-6. Stateless Processes
+7. Stateless Processes
 Apps should have the provision to be served by multiple stateless, independent processes.
 Remix runs as a stateless process.
 
-7. Port Binding
+8. Port Binding
 Apps directly bind to a port and respond to incoming requests.
 For now, we use the standard ports for development and production provided by Remix:
 
-Production: 4173
+Production: 3000
 
 Development: 5173
 
