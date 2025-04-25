@@ -1,6 +1,7 @@
 # PVS
 Parallele und Verteilte Systeme Lab
 
+Instructions for Installation:
 1. Clone this repository via CMD with
 git clone https://github.com/LukasTraenkleHSE/PVS.git
 or inside VS Code via the terminal.
