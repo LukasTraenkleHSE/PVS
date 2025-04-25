@@ -5,7 +5,7 @@ import { useState } from "react";
 
 import Message from "~/components/message";
 
-const apiUrl = import.meta.env.VITE_API_SERVER_URL;
+const apiUrl = process.env.VITE_API_SERVER_URL;
 
 
 type Item = {
@@ -40,11 +40,14 @@ export const loader: LoaderFunction = async ({ request, params }) => {
           } else {
               errorText = "Unknown status code"; 
           }
+          console.error("Error: ", errorText);
           return json({ items: null, message: "Error: " + errorText });
         }
         const item: Item[] = await response.json();
+        console.log("Data: ", item);
         return json({item, message});
       } catch (error: any) {
+        console.error("Error: ", error);
         return json({ items: null, message: "Error: " + error.message });
       }
 };
@@ -69,23 +72,30 @@ export const action: ActionFunction = async ({ request, params }) => {
       //redirect to home page with message
       if (response.ok) {
         if (response.status === 200) {
+          console.log("Item updated successfully");
           return redirect(`/?message=Item updated successfully`);
         } else {
+          console.error("Unknown status code: ", response.statusText);
           return redirect(`/?message=Error: Unknown status code ${response.status}`);
         }
       //reload page with error message
       } else {
         if (response.status === 400) {
+          console.error("Invalid input: ", response.statusText);
           return redirect(`?message=Error: Invalid input`);
         } else if (response.status === 404) {
+          console.error("Item not found: ", response.statusText);
           return redirect(`?message=Error: Item not found`);
         } else if (response.status === 500) {
+          console.error("Server Error: ", response.statusText);
           return redirect(`?message=Error: Server Error`);
         } else {
+          console.error("Unknown status code: ", response.statusText);
           return redirect(`?message=Error: Unknown status code ${response.status}`);
         }
       }
     } catch (error) {
+      console.error("Error: ", error);
       return redirect(`?message=Error: ${error}`);
     }
 };

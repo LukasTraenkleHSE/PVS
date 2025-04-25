@@ -4,7 +4,7 @@ import { redirect, useLoaderData, useNavigate } from "@remix-run/react";
 
 import Message from "~/components/message";
 
-const apiUrl = import.meta.env.VITE_API_SERVER_URL;
+const apiUrl = process.env.VITE_API_SERVER_URL;
 
 //schema for item
 type Item = {
@@ -31,15 +31,19 @@ export const loader: LoaderFunction = async ({ request }) => {
             let errorText = "";
             if (response.status === 500) {
                 errorText = "Server Error";
+                console.error("Server Error: ", response.statusText);
             } else {
-                errorText =  "Unknown status code"; 
+                errorText =  "Unknown status code";
+                console.error("Unknown status code: ", response.statusText); 
             }
             return json({ items: data, message: "Error: " + errorText });
         }
         const data: Item[] = await response.json();
+        console.log("Data: ", data);
         return json({ items: data, message });
       } catch (error: any) {
         const data: Item[] = [];
+        console.error("Error: ", error);
         return json({ items: data, message: "Error: " + error.message });
       }
 };
@@ -56,19 +60,25 @@ export const action: ActionFunction = async ({ request }) => {
         });
         if (!response.ok) {
             if (response.status === 404) {
+                console.error("Item not found: ", response.statusText);
                 return redirect(`/?message=Error: Item not found`);
             } else if (response.status === 500) {
+                console.error("Server Error: ", response.statusText);
                 return redirect(`/?message=Error: Server Error`);
             } else {
+                console.error("Unknown status code: ", response.statusText);
                 return redirect(`?message=Error: Unknown status code ${response.status}`);
             }
         }
         if (response.status === 204) {
+            console.log("Item deleted successfully: ", response.statusText);
             return redirect(`/?message=Item deleted successfully`);
         } else {
+            console.error("Unknown status code: ", response.statusText);
             return redirect(`?message=Error: Unknown status code ${response.status}`);
         }
     } catch (error) {
+        console.error("Error: ", error);
         return redirect(`?message=Error: ${error}`);
     }
 };
