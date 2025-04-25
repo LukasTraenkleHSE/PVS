@@ -17,7 +17,7 @@ COPY . .
 RUN npm run build
 
 # Expose the port Remix will serve the app from
-EXPOSE 5173
+EXPOSE 3000
 
 # Start the Remix app (make sure it's using the right build file)
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "start"]

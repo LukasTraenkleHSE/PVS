@@ -4,7 +4,7 @@ import { json, redirect } from "@remix-run/node";
 
 import Message from "~/components/message";
 
-const apiUrl = import.meta.env.VITE_API_SERVER_URL;
+const apiUrl = process.env.VITE_API_SERVER_URL;
 
 type LoaderData = {
   message: string | null;
@@ -39,23 +39,30 @@ export const action: ActionFunction = async ({ request }) => {
       //redirect to home page with message
       if (response.ok) {
         if (response.status === 200) {
-          return redirect(`/?message=Item updated successfully`);
+          console.log("Item updated successfully");
+          return redirect(`/?message=Item updated successfully`);         
         } else if (response.status === 201) {
+          console.log("Item created successfully");
           return redirect(`/?message=Item created successfully`);
         } else {
+          console.error("Unknown status code: ", response.statusText);
           return redirect(`/?message=Error: Unknown status code ${response.status}`);
         }
         //reload page with error message
       } else {
         if (response.status === 400) {
+          console.error("Invalid input: ", response.statusText);
           return redirect(`?message=Error: Invalid input`);
         } else if (response.status === 500) {
+          console.error("Server Error: ", response.statusText);
           return redirect(`?message=Error: Server Error`);
         } else {
+          console.error("Unknown status code: ", response.statusText);
           return redirect(`?message=Error: Unknown status code ${response.status}`);
         }
       }
     } catch (error) {
+      console.error("Error: ", error);
       return redirect(`?message=Error: ${error}`);
     }
 };
