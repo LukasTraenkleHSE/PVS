@@ -11,7 +11,7 @@ Instructions for installation:
 
 4.Then open a terminal and execute in terminal `docker compose up`.
 
-5.After building is done you can open um your favorite browser and visit `localhost:4173`.
+5.After building is done you can open up your favorite browser and visit `localhost:4173`.
 
 6.The istallation is finished and you can test the app now.
 
