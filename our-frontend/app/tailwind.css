@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  display: flex;
+  flex-direction: column;
+
+  width: 50vw;
+  margin: 0 auto;
+
+
+  .blue{
+    @apply bg-blue-500;
+  }
+
+  .green{
+    @apply bg-green-500;
+  }
+
+  .red{
+    @apply bg-red-500;
+  }
+}
+
+h1 {
+  font-size: 2em;
+  font-weight: bolder;
+}
+
+button {
+  margin: 5px;
+  padding: 8px 16px;
+  border-radius: 5px;
+  color: white;
+}
+
+button:hover {
+  cursor: pointer;
+  filter: brightness(90%);
+}
+
+header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+input {
+  margin: 5px;
+  padding: 7px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.title {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.apiStatus {
+  color: grey;
+  font-size: 0.8em;
+}
+
+.item {
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+  border-bottom: 1px solid black;
+}
+
+.item:hover {
+  background-color: rgb(236, 236, 236);
+}
+
+.item>div {
+  text-align: left;
+  padding: 12px;
+}
+
+.item>.id {
+  width: 10%;
+}
+
+.item>.name {
+  width: 25%;
+}
+
+.item>.quantity {
+  width: 25%;
+}
+
+.item>form {
+  margin: 0;
+}
+
+.listHeader {
+  font-weight: bolder;
+  background-color: rgb(236, 236, 236);
+}
+
+.message {
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+  padding: 12px;
+  color: green;
+  background-color: rgb(187, 231, 187);
+  border-radius: 7px;
+}
+
+.error {
+  color: red;
+  background-color: rgb(255, 204, 204);
+}
