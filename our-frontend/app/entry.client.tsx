@@ -9,7 +9,7 @@ import { startTransition, StrictMode } from "react";
 import { hydrateRoot } from "react-dom/client";
 
 import Home from "./routes/_index";
-import Edit from "./routes/edit";
+import Edit from "./routes/item.$itemId";
 import Add from "./routes/add";
 
 startTransition(() => {

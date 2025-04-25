@@ -8,6 +8,7 @@ import {
 import type { LinksFunction } from "@remix-run/node";
 
 import Header from "./components/header";
+import ApiStatus from "./components/apiStatus";
 
 import "./tailwind.css";
 
@@ -38,6 +39,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         {children}
         <ScrollRestoration />
         <Scripts />
+        <ApiStatus />
       </body>
     </html>
   );
