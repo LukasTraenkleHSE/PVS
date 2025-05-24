@@ -41,24 +41,25 @@ We use a package.json where all dependencies are listed.
 
 3. Config
 Configurations of an app need to be stored independently as environment variables.
-This is not yet the case, but with an .env file all sensitive data will be hidden.
-Some Environment Variables are given in the docker-compose.yml.
+This is given by environment variables in the docker-compose.yml.
 
 5. Backing Services
 Services like databases, messaging systems, SMTP services, etc. should be architected as external resources.
-We don't use any external database right now, but it can be done via a database set up in the .env file.
+The database is easily exchangeable by editing the docker-compose database and backend variables.
 
 6. Build, Release, Run
 There should be three independent steps of a deployment process.
-Not given right now in single steps, but this will be implemented when Kubernetes is involved.
+Given by using dockers different stages build/run.
+Also the frontend image is getting build on every commit to this Repos main branch.
 
-7. Stateless Processes
+8. Stateless Processes
 Apps should have the provision to be served by multiple stateless, independent processes.
-Remix runs as a stateless process.
+Remix runs as a stateless process and does not depend on persistent data, beside the database.
 
-8. Port Binding
+9. Port Binding
 Apps directly bind to a port and respond to incoming requests.
-For now, we use the standard ports for development and production provided by Remix:
+For now, we use the standard ports for development and production provided by Remix.
+These can changed be by changing the outgoing port of the frontend in the docker compose:
 
 Production: 3000
 
@@ -66,23 +67,20 @@ Development: 5173
 
 8. Concurrency
 Apps need to be broken down into multiple modules for scaling.
-Not given yet, but Kubernetes will take care of scaling.
+It's possible to run multiple instances of the frontend or backend at the same time.
 
 9. Disposability
 Apps should maximize robustness with quick startup and easy shutdown.
-We use Docker, so this is given.
+We use Docker, which can start and stop containers in a few seconds.
 
 10. DEV/PROD Parity
 Development, staging, and production should be kept as similar as possible.
-This is kind of done, but with an .env file it would be even closer to a real-world environment.
+The mode can easily be switched between production and development by changing a few variables in the compose and dockerfile.
 
 11. Logs
 Treat logs as event streams.
-For now, we only use console.log.
+All our processes write it's events to stdout.
 
 12. Admin Processes
 Admin tasks should be run as one-off processes.
 No admin processes for now, but they will be implemented later on if needed.
-
-Answers based on this source since the official slides are not available right now.
-Sources: [Twelve-Factor App Principles](https://blog.rheinwerk-computing.com/twelve-factor-app-principles-for-developers)
