@@ -1,9 +1,6 @@
-version: '3.8'
-
 services:
   frontend:
-    build: ./our-frontend
-    container_name: frontend
+    image: lukastraenklehse/pvs:main
     ports:
     - 3000:3000
     environment:
@@ -13,8 +10,7 @@ services:
       - shoppingnet   
 
   backend:
-    build: ./copied backend
-    container_name: backend
+    image: maeddes/hse-backend:springboot
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://database:5432/shoppingdb
       SPRING_DATASOURCE_USERNAME: username
