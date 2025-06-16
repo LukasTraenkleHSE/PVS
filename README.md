@@ -30,6 +30,23 @@ https://uni2.mowan.org
 
 
 
+Running this in a kubernetes environment using Minikube:
+
+1. Clone this repository via CMD with
+git clone https://github.com/LukasTraenkleHSE/PVS.git
+
+2. Install Minikube
+
+2. Open a terminal in the git folder
+
+3. run the following commands:
+    - minikube start
+    - kubectl apply -f .\kubernetes\
+    - minikube service frontend
+
+    Notes: You may have to wait a few minutes after applying, since the services need to start. You can check the status using "kubectl get services".
+
+
 Twelve-Factor App Principles
 1. Codebase:
 Application resources should have a version-managed, source-code repository.

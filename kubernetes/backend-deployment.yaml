@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: maeddes/hse25backend:latest
+          image: ghcr.io/lukastraenklehse/pvs-backend:main
           ports:
             - containerPort: 8080
           env:

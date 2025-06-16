@@ -1,6 +1,6 @@
 services:
   frontend:
-    image: lukastraenklehse/pvs:main
+    image: ghcr.io/lukastraenklehse/pvs:main
     ports:
     - 3000:3000
     environment:
@@ -10,7 +10,7 @@ services:
       - shoppingnet   
 
   backend:
-    image: maeddes/hse-backend:springboot
+    image: ghcr.io/lukastraenklehse/pvs-backend:main
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://database:5432/shoppingdb
       SPRING_DATASOURCE_USERNAME: username
